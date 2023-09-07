@@ -29,6 +29,38 @@ function main(){
 
 function parseResponse(response){
 
+    
+    switch(response.shape){
+        case 'circle':
+            let circle = new Shapes.Circle()
+            circle.setColor(response.color)
+            circle.setText(response.textCharacter)
+            writeSVG(circle.render())
+            break;
+        case 'triangle':
+            let triangle = new Shapes.Triangle()
+            triangle.setColor(response.color)
+            triangle.setText(response.textCharacter)
+            writeSVG(triangle.render())
+            break;
+        case 'square':
+            let square = new Shapes.Square()
+            square.setColor(response.color)
+            square.setText(response.textCharacter)
+            writeSVG(square.render())
+            break;
+        default:
+            //exit code
+            break;
+    }
+
 }
+
+function writeSVG(svg){
+    fs.writeFile('./examples/Logo.svg',svg, (err) =>
+    err ? console.error(err) : console.log('Generated logo.svg')
+    )
+}
+
 
 main()
